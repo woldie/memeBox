@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="edo-webfont.css" />
+    </head>
+    <body onload="startMarquee()">
+        <div class="outer-triangle"></div>
+        <div class="inner-triangle"></div>
+        <div class="marquee-container">
+            <div class="marquee"><div class="message">Woldie was here</div></div>
+        </div>
+
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .outer-triangle {
+                position: absolute;
+                width: 0;
+                height: 0;
+                text-indent: -9999px;
+                border-bottom: 46px solid #ec4760;
+                border-left: 69px solid transparent;
+            }
+
+            .inner-triangle {
+                position: absolute;
+                margin: 2px 0 0 3px;
+                width: 0;
+                height: 0;
+                text-indent: -9999px;
+                border-bottom: 44px solid #202020;
+                border-left: 66px solid transparent;
+            }
+
+            .marquee-container {
+                float: left;
+                display: block;
+                margin: 0 0 0 69px;
+                width: 550px;
+                overflow: hidden;
+            }
+
+            .marquee-container .marquee {
+                border-top: 2px solid #ec4760;
+                padding-top: 1px;
+                padding-bottom: 3px;
+                height: 40px;
+                font-family: edoregular, sans-serif;
+                font-size: 36px;
+                line-height: 40px;
+                vertical-align: baseline;
+                color: #ec4760;
+                background-color: #202020;
+                margin: 0;
+            }
+
+            .message {
+                width: 525px;
+                text-align: center;
+                white-space: nowrap;
+            }
+        </style>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.js"></script>
+        <script type="text/javascript">
+            var desperationMessages = [
+                    "Risk <u>Everything</u>",
+                    "Just Do It",
+                    "B-E AGGRESSIVE",
+                    "We talk winning",
+                    "YAGNI - You ain't gonna need it",
+                    "SQUEEZE 'EM!",
+                    "Your first task is to believe",
+                    "Reduce drag",
+                    "10000 hrs till expert level",
+                    "Do the simplest thing",
+                    "Completion is my happy place",
+                    "You win some and you dim sum",
+                    "Get eyes on the target",
+                    "Put the fire into the hole",
+                    "<em>Full momentum</em>"
+            ];
+
+            var currentMessage = 0;
+
+            function advanceMarquee() {
+                currentMessage++;
+                if (currentMessage >= desperationMessages.length) {
+                    currentMessage = 0;
+                }
+
+                var marqueeList = document.getElementById("marquee-list");
+                if (marqueeList.children.length > 0) {
+                    marqueeList.removeChild(marqueeList.children[0]);
+                }
+
+                var nextItem = document.createElement("li");
+                nextItem.innerHTML = desperationMessages[currentMessage];
+                marqueeList.appendChild(nextItem);
+            }
+
+            function marqueeConfig() {
+                return {
+                    //duration in milliseconds of the marquee
+                    duration: 400,
+                    //time in milliseconds before the marquee will start animating
+                    delayBeforeStart: 20000,
+                    //'left' or 'right', 'up' or 'down'
+                    direction: 'up',
+                    //true or false - should the marquee be duplicated to show an effect of continues flow
+                    duplicated: false,
+                    pauseOnCycle: true,
+                    startVisible: true
+                };
+            }
+
+            function installFinishedHandler(marqueeObject) {
+                marqueeObject.bind('finished', function() {
+                    //Change text to something else after first loop finishes
+                    $(this).marquee('destroy');
+
+                    $("head style").remove();
+
+                    currentMessage++;
+                    if (currentMessage >= desperationMessages.length) {
+                        currentMessage = 0;
+                    }
+
+                    //Load new content using Ajax and update the marquee container
+                    //Apply marquee plugin again
+                    installFinishedHandler($(this)
+                            .html(`<div class="message">${desperationMessages[currentMessage]}</div>`)
+                            .marquee(marqueeConfig()));
+                });
+            }
+
+            function startMarquee() {
+                installFinishedHandler($('.marquee').marquee(marqueeConfig()));
+            }
+        </script>
+    </body>
+</html>
