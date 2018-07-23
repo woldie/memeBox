@@ -4,10 +4,13 @@
         <link rel="stylesheet" href="edo-webfont.css" />
     </head>
     <body onload="startMarquee()">
+        <div class="outer-banner-triangle"></div>
+        <div class="inner-banner-triangle"></div>
+        <div class="channel-banner">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WoldieTownUSA<br><sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;feat.</sup><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joostin</div>
         <div class="outer-triangle"></div>
         <div class="inner-triangle"></div>
         <div class="marquee-container">
-            <div class="marquee"><div class="message">Woldie was here</div></div>
+            <div class="marquee"><div class="message">Memebox v1.12</div></div>
         </div>
 
         <style type="text/css">
@@ -23,11 +26,12 @@
                 text-indent: -9999px;
                 border-bottom: 46px solid #ec4760;
                 border-left: 69px solid transparent;
+                margin: 0 0 0 150px;
             }
 
             .inner-triangle {
                 position: absolute;
-                margin: 2px 0 0 3px;
+                margin: 2px 0 0 154px;
                 width: 0;
                 height: 0;
                 text-indent: -9999px;
@@ -38,7 +42,6 @@
             .marquee-container {
                 float: left;
                 display: block;
-                margin: 0 0 0 69px;
                 width: 550px;
                 overflow: hidden;
             }
@@ -62,6 +65,36 @@
                 text-align: center;
                 white-space: nowrap;
             }
+
+            .channel-banner {
+                float: left;
+                height: 44px;
+                width: 150px;
+                background: url('volcano.png') no-repeat bottom 0 left -65px;
+                border-top: 2px solid #005cff;
+                margin: 0 0 0 69px;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                font-style: italic;
+            }
+
+            .outer-banner-triangle {
+                position: absolute;
+                width: 0;
+                height: 0;
+                text-indent: -9999px;
+                border-bottom: 46px solid #005cff;
+                border-left: 69px solid transparent;
+                margin: 0;
+            }
+
+            .inner-banner-triangle {
+                position: absolute;
+                margin: 2px 0 0 4px;
+                background-image: url("volcano_tri.png");
+                width: 65px;
+                height: 44px;
+            }
         </style>
 
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
@@ -69,6 +102,7 @@
         <script type="text/javascript">
             var desperationMessages = [
                     "Risk <u>Everything</u>",
+                    "LIP BALLLLLM",
                     "Just Do It",
                     "B-E AGGRESSIVE",
                     "We talk winning",
@@ -82,6 +116,7 @@
                     "You win some and you dim sum",
                     "Get eyes on the target",
                     "Put the fire into the hole",
+                    "E",
                     "<em>Full momentum</em>"
             ];
 
